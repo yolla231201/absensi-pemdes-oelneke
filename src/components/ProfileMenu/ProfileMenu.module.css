@@ -1,0 +1,219 @@
+.profileMenuWrapper {
+  width: 100%;
+}
+
+/* Style desktop: profile menu di atas konten, navbar di samping konten */
+.profileMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  z-index: 100;
+
+  /* Tambahan shadow & border-radius */
+  background-color: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* shadow halus */
+}
+
+/* Logo + rotating text */
+.appLogoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.appLogo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.desaWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.desaStatic {
+  color: #7c4dff;
+  font-weight: 700;
+}
+
+.rotatingTextMain {
+  padding: 0.35rem 0.75rem;
+  background-color: #7c4dff;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1.8rem;
+  overflow: hidden;
+}
+
+.rotatingTextSplit {
+  overflow: hidden;
+}
+
+/* Profile photo & dropdown */
+.profileWrapper {
+  position: relative;
+}
+
+.profilePhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid #7c4dff;
+}
+
+.profileDropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  animation: dropdownFade 0.2s ease;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownPhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.userInfo {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.userName {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.userEmail,
+.userRole {
+  font-size: 0.8rem;
+  color: #555;
+  margin: 2px 0;
+}
+
+.dropdownMenu {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dropdownItem {
+  font-size: 1rem;
+  background: #f5f5f5;
+  color: #333;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: left;
+  transition: background 0.2s;
+  font-family: "Poppins", "Sans-serif";
+}
+
+.dropdownItem:hover {
+  background: #7c4dff85;
+  color: #fff;
+}
+
+/* Logout button */
+.logoutButtonWrapper {
+  display: flex;
+  justify-content: flex-end; /* dorong tombol ke kanan */
+  width: 100%;
+}
+
+.logoutBtn {
+  background: #e14646;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-left: auto; /* pastikan tombol nempel kanan */
+}
+
+.logoutBtn:hover {
+  background: #952e2e;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .profileMenu {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 0; /* di mobile, shadow bisa hilang supaya lebih seamless */
+    box-shadow: none;
+  }
+
+  .desaWrapper {
+    font-size: 1.5rem;
+  }
+  .rotatingTextMain {
+    font-size: 1.2rem;
+    padding: 0.25rem 0.5rem;
+  }
+  .appLogo {
+    width: 30px;
+    height: 30px;
+  }
+  .profilePhoto,
+  .dropdownPhoto {
+    width: 40px;
+    height: 40px;
+  }
+  .userName,
+  .userEmail,
+  .userRole {
+    font-size: 0.8rem;
+  }
+  .dropdownItem {
+    font-size: 0.9rem;
+  }
+  .logoutBtn {
+    width: 100%; /* di mobile tombol full width */
+    font-size: 0.8rem;
+    padding: 0.8rem 1rem;
+    margin-left: 0; /* reset biar center */
+  }
+}

@@ -1,0 +1,84 @@
+.alertContainer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  color: white;
+  max-width: 300px;
+}
+
+/* Variasi warna */
+.success {
+  background-color: #22c55e; /* hijau */
+}
+
+.warning {
+  background-color: #facc15; /* kuning */
+  color: #1f2937; /* teks gelap biar kontras */
+}
+
+.error {
+  background-color: #ef4444; /* merah */
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Animasi fadeIn / fadeOut */
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+
+
+.confirmButtons {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.confirmBtn {
+  background-color: #7c4dff;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.confirmBtn:hover {
+  background-color: #5a32cc;
+}
+
+.cancelBtn {
+  background-color: #ddd;
+  color: #333;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.cancelBtn:hover {
+  background-color: #bbb;
+}

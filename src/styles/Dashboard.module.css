@@ -1,0 +1,160 @@
+/* src/pages/Dashboard/Dashboard.module.css */
+.dashboardWrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #faf9fb;
+  flex-direction: row;
+}
+
+.dashboardMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  padding-bottom: 25px;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.dashboardTitle {
+  font-size: 1rem;
+  color: #5b2fd7;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.dashboardCards {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  flex: 1 1 0;
+  background: white;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+  font-size: 1rem;
+  color: #7c4dff;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #111;
+}
+
+.dashboardTable {
+  background: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 2rem;
+  overflow: visible;
+}
+
+.dashboardTable h2 {
+  font-size: 0.9rem;
+  color: #7c4dff;
+}
+
+.dashboardTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboardTable th,
+.dashboardTable td {
+  border: 1px solid #ededed;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.dashboardTable th {
+  background: #7c4dff;
+  color: white;
+  font-weight: 200;
+}
+
+.dashboardPengumuman h2 {
+  font-size: 0.8rem;
+  color: #7c4dff;
+}
+
+.pengumumanCard {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 1rem;
+}
+
+.pengumumanInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.pengumumanInfo h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #7c4dff;
+}
+
+.pengumumanCard button {
+  background: #7c4dff;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.pengumumanCard button:hover {
+  background: #5c38bd;
+}
+
+.pengumumanCard p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #111;
+}
+
+@media (max-width: 768px) {
+  .dashboardMain {
+    padding-bottom: 80px;
+  }
+  .dashboardTable th,
+  .dashboardTable td {
+    font-size: 0.7rem;
+  }
+  .dashboardCards .card {
+    padding: 0.8rem;
+  }
+  .dashboardCards .card h2 {
+    font-size: 0.6rem;
+  }
+  .dashboardCards .card p {
+    font-size: 0.8rem;
+  }
+}

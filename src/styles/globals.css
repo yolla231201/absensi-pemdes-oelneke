@@ -1,42 +1,73 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
+html, body {
+  font-family: 'Poppins', sans-serif;
   margin: 0;
+  padding: 0;
+  background: #faf9fb;
+  height: 100%;         /* penting untuk layout penuh */
+  /* overflow: hidden;     */
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+#__next {
+  height: 100%;         /* pastikan container utama penuh */
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* ===== Layout Desktop ===== */
+.appLayout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;      /* cegah scroll ganda */
+}
+
+.sidebar {
+  display: flex;
+}
+
+.profileMenuWrapper {
+  margin-bottom: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 50; /* biar di atas konten */
+  background: #faf9fb; /* kasih background supaya nggak tembus konten waktu scroll */
+}
+
+.mainContentWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 2rem;
+  overflow-y: auto;      /* hanya ini yang bisa scroll */
+}
+
+/* Navbar Mobile - hidden by default desktop */
+.navbarMobileWrapper {
+  display: none;
+}
+
+/* ===== Media Mobile ===== */
+@media (max-width: 768px) {
+  .appLayout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    display: none; /* hide sidebar mobile */
+  }
+
+  .navbarMobileWrapper {
+    display: block; /* show navbar mobile */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .mainContentWrapper {
+    padding: 0rem;
+  }
+
+  .profileMenuWrapper {
+    margin-bottom: 0.5rem;
   }
 }

@@ -1,0 +1,50 @@
+.notFound {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-primary, #4c1d95); /* warna utama */
+  color: white;
+  text-align: center;
+}
+
+ .notFoundTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.notFoundMessage {
+  font-size: 1.5rem;
+  margin: 10px 0 20px;
+}
+
+.notFound link {
+  padding: 10px 20px;
+  background: white;
+  color: var(--color-primary, #4c1d95);
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.notFound link:hover {
+  background: #ddd6fe;
+  color: #1e1b4b;
+}
+
+
+@media (max-width: 768px) {
+  .notFound-container h1{
+    font-size: 2rem;
+  }
+  .notFound-container p{
+    font-size: 0.8rem;
+  }
+  .notFound-link {
+  background: white;
+  font-size: 0.8rem;
+}
+} 

@@ -1,0 +1,143 @@
+/* AbsenHarian.module.css */
+
+/* Wrapper utama halaman */
+.absensiHarian {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  padding-bottom: 100px;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box;
+  background: #faf9fb;
+}
+
+/* Judul halaman */
+.absensiTitle {
+  font-size: 1.5rem;
+  color: #7c4dff;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Form absensi */
+.absensiForm {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+}
+
+/* Group input */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.formGroup input,
+.formGroup select {
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: border 0.2s;
+  font-family: "Poppins";
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  border-color: #7c4dff;
+}
+
+/* Input error */
+.inputError {
+  border: 2px solid red !important;
+}
+
+/* Lokasi */
+.lokasiInputWrapper {
+  position: relative;
+  max-width: 100%;
+}
+
+.lokasiInputWrapper input {
+  width: 100%;
+  padding-right: 3.5rem;
+  box-sizing: border-box;
+}
+
+.lokasiBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background: #1d9744;
+  color: white;
+  border: none;
+  border-radius: 0 0.75rem 0.75rem 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.8rem;
+  transition: background 0.2s;
+}
+
+.lokasiBtn:hover {
+  background: #077329;
+}
+
+/* Submit row */
+.submitRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.distanceOut,
+.distanceOk {
+  font-size: 13px;
+  margin: 0;
+  color: #555;
+}
+
+.submitRow button {
+  background: #7c4dff;
+  color: white;
+  padding: 0.65rem 1.3rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.submitRow button:hover {
+  background: rgb(46, 23, 114);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+
+}

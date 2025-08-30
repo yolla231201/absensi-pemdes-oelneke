@@ -9,13 +9,22 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@supabase/supabase-js": "^2.56.0",
+    "canvg": "^4.0.3",
+    "dompurify": "^3.2.6",
+    "html2canvas": "^1.4.1",
+    "jspdf-autotable": "^5.0.2",
+    "motion": "^12.23.12",
+    "next": "15.5.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.2"
+    "react-icons": "^5.5.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.5.2",
-    "@eslint/eslintrc": "^3"
+    "eslint-config-next": "15.5.2"
   }
 }

@@ -1,0 +1,170 @@
+.loginWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: #faf9fb;
+  box-sizing: border-box;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 850px;
+  width: 100%;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 1rem;
+}
+
+.loginLeft {
+  display: none;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #7c4dff;
+  border-bottom-left-radius: 1rem;
+  border-top-left-radius: 1rem;
+  padding: 4rem 2rem;
+  color: #fff;
+}
+
+.loginLogo {
+  width: 6rem;
+  height: auto;
+  margin-bottom: 0rem;
+}
+
+.loginLeftTitle {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 15rem;
+  color: #ffffff;
+}
+
+.loginRight {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loginTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #7c4dff;
+}
+
+.loginSubtitle {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.loginForm .inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.inputGroup label {
+  font-size: 0.75rem;
+  color: #555;
+  margin-bottom: 0.25rem;
+}
+
+.inputGroup input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+/* Input salah */
+.inputError {
+  border: 1px solid red;
+}
+
+/* Warning text */
+.warning {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 1rem;
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordWrapper input {
+  width: 100%;
+  padding-right: 40px; /* ruang untuk icon */
+}
+
+.togglePassword {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+
+
+.forgotPassword {
+  text-align: right;
+  color: #7c4dff;
+  font-size: 0.65rem;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 0.5rem;
+}
+
+.forgotPassword:hover {
+  color: #161122;
+  align-items: end;
+  text-align: right;
+}
+
+
+
+.loginBtn {
+  width: 100%;
+  background: #7c4dff;
+  color: #fff;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-bottom: 30px;
+}
+
+.loginBtn:hover {
+  background: #5938b6;
+}
+
+/* Responsive */
+@media screen and (min-width: 768px) {
+  .loginContainer {
+    flex-direction: row;
+  }
+
+  .loginLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

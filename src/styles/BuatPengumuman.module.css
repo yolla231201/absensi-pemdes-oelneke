@@ -1,0 +1,174 @@
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #faf9fb;
+  flex-direction: row;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  padding-bottom: 100px;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #7c4dff;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Form Pengumuman */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom: 2rem;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.form input,
+.form textarea {
+  margin-top: 0.3rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.saveBtn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  background: #28a745;
+  color: white;
+}
+
+.saveBtn:hover {
+  background: #218838;
+}
+
+/* List Pengumuman */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: flex-start;
+  background: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.cardContent {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.cardHeader h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #7c4dff;
+}
+
+.cardHeader span {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.actions button {
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.editBtn {
+  background: #ffc107;
+  color: white;
+}
+
+.editBtn:hover {
+  background: #ad8200;
+}
+
+.deleteBtn {
+  background: #dc3545;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background: #b02a37;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cardContent {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  .actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

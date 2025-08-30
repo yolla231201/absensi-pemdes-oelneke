@@ -1,0 +1,19 @@
+/* src/pages/Dashboard/TextType.module.css */
+.textType {
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+.textTypeContent {
+  display: inline;
+}
+
+.textTypeCursor {
+  margin-left: 0.25rem;
+  display: inline-block;
+  opacity: 1;
+}
+
+.textTypeCursorHidden {
+  display: none;
+}
