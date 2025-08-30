@@ -5,28 +5,29 @@ import styles from "../styles/Login.module.css";
 import Logo from "../assets/images/dinas_ttu.png";
 import Image from "next/image";
 import { IoMdEye, IoIosEyeOff } from "react-icons/io";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [warning, setWarning] = useState("");
+  const [error, setError] = useState("");
   const [errorInput, setErrorInput] = useState({ email: false, password: false });
-
-  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setWarning("");
+    setError("");
     setErrorInput({ email: false, password: false });
     setLoading(true);
 
     try {
       const { data, error } = await login(email, password);
       if (error) {
-        setWarning(error.message === "Invalid login credentials" ? "Email atau password anda salah!" : error.message);
+        setError(error.message === "Invalid login credentials" ? "Email atau password anda salah!" : error.message);
         setErrorInput({ email: true, password: true });
         return;
       }
@@ -34,10 +35,16 @@ export default function LoginPage() {
       router.push("/dashboard");
     } catch (err) {
       console.error(err);
-      setWarning("Terjadi kesalahan. Coba lagi.");
+      setError("Terjadi kesalahan. Coba lagi.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleClickInput = () => {
+    // Hilangkan pesan error saat user klik input
+    setError("");
+    setErrorInput({ email: false, password: false });
   };
 
   return (
@@ -60,6 +67,7 @@ export default function LoginPage() {
                 placeholder="Masukkan email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                onClick={handleClickInput} // klik input hilangkan pesan error
                 required
                 className={errorInput.email ? styles.inputError : ""}
               />
@@ -73,6 +81,7 @@ export default function LoginPage() {
                   placeholder="Masukkan password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  onClick={handleClickInput} // klik input hilangkan pesan error
                   required
                   className={errorInput.password ? styles.inputError : ""}
                 />
@@ -82,18 +91,27 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {warning && <div className={styles.warning}>{warning}</div>}
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className={styles.error}
+                >
+                  {error}
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             <button type="submit" className={styles.loginBtn} disabled={loading}>
               {loading ? "Loading..." : "Login"}
             </button>
           </form>
 
-          {/* Link Lupa Password */}
           <p className={styles.forgotPassword}>
-            <a href="/lupa-password">
-              Lupa Password?
-            </a>
+            <a href="/lupa-password">Lupa Password?</a>
           </p>
         </div>
       </div>
