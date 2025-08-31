@@ -92,11 +92,7 @@ export async function POST(req) {
 
     // 9. Kirim email undangan
     const { error: inviteError } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, {
-<<<<<<< HEAD
-      redirectTo: "https://crtyokef2025absensi-pemdes-oelneke.vercel.app/p",
-=======
-      redirectTo: "https://crtyokef2025absensi-pemdes-oelneke.vercel.app/",
->>>>>>> 6a587ab (Update: perbaikan CSS dan responsivitas tabel)
+      redirectTo: "https://absensi-pemdes-oelneke.vercel.app",
     });
     if (inviteError) throw inviteError;
 
