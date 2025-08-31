@@ -9,7 +9,7 @@ export default function Document() {
         {/* Meta sosial media login */}
         <meta property="og:title" content="Absensi Desa Oelneke" />
         <meta property="og:description" content="Aplikasi Absensi Desa Oelneke" />
-        <meta property="og:image" content="hhttps://crtyokef2025absensi-pemdes-oelneke.vercel.app/landing_logo.png" />
+        <meta property="og:image" content="https://crtyokef2025absensi-pemdes-oelneke.vercel.app/landing_logo.png" />
         <meta property="og:url" content="https://crtyokef2025absensi-pemdes-oelneke.vercel.app" />
         <meta property="og:type" content="website" />
 
