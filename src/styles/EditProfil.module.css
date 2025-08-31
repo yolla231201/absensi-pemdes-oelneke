@@ -114,6 +114,7 @@
 .saveBtn {
   background: #28a745;
   color: white;
+  width: 30%;
 }
 
 .saveBtn:hover {
@@ -122,9 +123,6 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .title {
-    font-size: 1.1rem;
-  }
 
   .form label {
     font-size: 0.8rem;

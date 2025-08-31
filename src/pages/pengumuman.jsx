@@ -6,6 +6,7 @@ const Pengumuman = () => {
   const [pengumuman, setPengumuman] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
+  const [openIndex, setOpenIndex] = useState(null); // hanya simpan index yang terbuka
 
   useEffect(() => {
     const fetchPengumuman = async () => {
@@ -27,6 +28,10 @@ const Pengumuman = () => {
     fetchPengumuman();
   }, []);
 
+  const toggleLihat = (idx) => {
+    setOpenIndex(openIndex === idx ? null : idx); // kalau klik yg sama → tutup
+  };
+
   return (
     <div className={styles.wrapper}>
       <main className={styles.main}>
@@ -45,10 +50,29 @@ const Pengumuman = () => {
                 <div className={styles.cardHeader}>
                   <h3>{item.judul}</h3>
                   <span>
-                    {new Date(item.tanggal).toLocaleDateString("id-ID")}
+                    {new Date(item.tanggal).toLocaleDateString("id-ID", {
+                      weekday: "long",
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}
                   </span>
                 </div>
-                <p>{item.isi}</p>
+
+                {openIndex === idx ? (
+                  <p className={styles.isi}>{item.isi}</p>
+                ) : (
+                  <p className={styles.isi}>dsda......</p>
+                )}
+
+                <div className={styles.cardFooter}>
+                  <button
+                    className={styles.lihatBtn}
+                    onClick={() => toggleLihat(idx)}
+                  >
+                    {openIndex === idx ? "Tutup" : "Lihat"}
+                  </button>
+                </div>
               </div>
             ))
           )}

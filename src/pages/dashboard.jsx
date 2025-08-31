@@ -50,7 +50,8 @@ const Dashboard = () => {
     const { data, error } = await supabase
       .from("pengumuman")
       .select("*")
-      .order("tanggal", { ascending: false });
+      .order("tanggal", { ascending: false })
+      .limit(3);
 
     if (error) return console.error("Error fetch pengumuman:", error);
     setPengumuman(data);
@@ -76,10 +77,7 @@ const Dashboard = () => {
       .from("profiles")
       .select("user_id, nama");
 
-    if (userError) {
-      console.error("Error fetch profiles:", userError);
-      return;
-    }
+    if (userError) return console.error("Error fetch profiles:", userError);
 
     const { data: absensiData, error: absensiError } = await supabase
       .from("absensi")
@@ -87,10 +85,7 @@ const Dashboard = () => {
       .gte("waktu_absensi", startOfMonth + "T00:00:00Z")
       .lte("waktu_absensi", endOfMonth + "T23:59:59Z");
 
-    if (absensiError) {
-      console.error("Error fetch absensi bulanan:", absensiError);
-      return;
-    }
+    if (absensiError) return console.error("Error fetch absensi bulanan:", absensiError);
 
     const absensiMap = users.map((u) => {
       const userAbsensi = absensiData.filter((a) => a.user_id === u.user_id);
@@ -153,27 +148,29 @@ const Dashboard = () => {
 
         {user?.role === ROLES.KEPALA_DESA && (
           <section className={styles.dashboardTable}>
-            <h2>Absensi Bulan ini </h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Nama</th>
-                  <th>Hadir</th>
-                  <th>Sakit</th>
-                  <th>Izin</th>
-                </tr>
-              </thead>
-              <tbody>
-                {absensiBulanan.map((item, idx) => (
-                  <tr key={idx}>
-                    <td>{item.nama}</td>
-                    <td>{item.hadir}</td>
-                    <td>{item.sakit}</td>
-                    <td>{item.izin}</td>
+            <h2>Absensi Bulan ini</h2>
+            <div className={styles.tableWrapper}>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Hadir</th>
+                    <th>Sakit</th>
+                    <th>Izin</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {absensiBulanan.map((item, idx) => (
+                    <tr key={idx}>
+                      <td>{item.nama}</td>
+                      <td>{item.hadir}</td>
+                      <td>{item.sakit}</td>
+                      <td>{item.izin}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
         )}
       </main>

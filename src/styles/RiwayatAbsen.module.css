@@ -5,6 +5,7 @@
   flex-direction: row;
   font-family: "Poppins", "Sans-serif";
 }
+
 .main {
   flex: 1;
   display: flex;
@@ -15,33 +16,21 @@
   height: 100vh;
   box-sizing: border-box;
 }
-.header {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
-  align-items: flex-start;
-}
-.top {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 1rem;
-}
+
 .title {
   font-size: 1.5rem;
   color: #7c4dff;
   text-align: left;
-  width: 100%;
   margin-bottom: 1rem;
   font-weight: 600;
 }
+
 .filterButtons {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
-  
 }
+
 .filterButtons button {
   padding: 0.5rem 1rem;
   border-radius: 0.75rem;
@@ -51,24 +40,18 @@
   cursor: pointer;
   transition: 0.2s;
   font-size: 0.85rem;
-  font-family: "Poppins", "Sans-serif";
-
 }
+
 .filterButtons button:hover,
 .filterButtons .active {
   background: #7c4dff;
   color: white;
 }
+
 .exportButtons {
   display: flex;
   gap: 0.7rem;
   margin-bottom: 1rem;
-  
-}
-
-.exportButtons button {
-  font-family: "Poppins", "Sans-serif";
-
 }
 
 .excel {
@@ -97,38 +80,60 @@
   background: #dc3545;
   color: white;
 }
+
 .tableContainer {
   background: white;
   padding: 1rem;
   border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   overflow: visible;
 }
+
 .tableTitle {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 10px;
   color: #7c4dff;
 }
+
 .tableResponsive {
   overflow-x: auto;
 }
+
 .table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
+
 .table th,
 .table td {
   border: 1px solid #ededed;
   padding: 0.6rem 0.8rem;
   font-size: 1rem;
   text-align: center;
+  word-break: break-word;
 }
+
+.table th:first-child,
+.table td:first-child {
+  width: 50%;
+  text-align: left;
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2),
+.table th:nth-child(3),
+.table td:nth-child(3) {
+  width: 25%;
+}
+
 .table th {
   background: #7c4dff;
   color: white;
   font-weight: 500;
 }
+
 .pagination {
   display: flex;
   justify-content: flex-end;
@@ -149,6 +154,7 @@
   background: #d1c4e9;
   cursor: not-allowed;
 }
+
 .status {
   display: inline-block;
   font-weight: 500;
@@ -159,21 +165,13 @@
   min-width: 40px;
   border: 2px solid;
   background-color: transparent;
-  color: inherit;
   margin: 2px 2px;
 }
-.status.hadir {
-  border-color: #28a745;
-  color: #28a745;
-}
-.status.sakit {
-  border-color: #dc3545;
-  color: #dc3545;
-}
-.status.izin {
-  border-color: #ffc107;
-  color: #ffc107;
-}
+
+.status.hadir { border-color: #28a745; color: #28a745; }
+.status.sakit { border-color: #dc3545; color: #dc3545; }
+.status.izin { border-color: #ffc107; color: #ffc107; }
+
 .emptyCard {
   background: #f9f9f9;
   border: 1px solid #ddd;
@@ -183,33 +181,15 @@
   font-size: 15px;
   color: #666;
 }
-.alert {
-  margin-bottom: 1rem;
-  color: #b00020;
-}
-/* responsive */
+
+.alert { margin-bottom: 1rem; color: #b00020; }
+
+/* Responsive */
 @media (max-width: 768px) {
-  .main {
-    padding-bottom: 80px;
-  }
-  .tableTitle {
-    font-size: 0.8rem;
-  }
-  .filterButtons button {
-    font-size: 0.6rem;
-  }
-  .exportButtons button {
-    font-size: 0.6rem;
-  }
-  .table th,
-  .table td {
-    font-size: 0.7rem;
-  }
-  .emptyCard p {
-    font-size: 0.8rem;
-  }
-  .status {
-    font-size: 0.6rem;
-    min-width: 30px;
-  }
+  .main { padding-bottom: 80px; }
+  .tableTitle { font-size: 0.8rem; }
+  .filterButtons button, .exportButtons button { font-size: 0.7rem; padding: 0.3rem 0.6rem; }
+  .table th, .table td { font-size: 0.7rem; padding: 0.4rem 0.5rem; }
+  .emptyCard p { font-size: 0.8rem; }
+  .status { font-size: 0.6rem; min-width: 30px; padding: 2px 4px; }
 }
