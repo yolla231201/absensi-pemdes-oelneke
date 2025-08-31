@@ -3,6 +3,7 @@
   min-height: 100vh;
   background: #faf9fb;
   flex-direction: row;
+  overflow-x: hidden; /* cegah scroll kanan */
 }
 
 .main {
@@ -25,52 +26,67 @@
   font-weight: 600;
 }
 
-/* Form Pengumuman */
+/* Form */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   background: white;
   padding: 1rem;
   border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   margin-bottom: 2rem;
 }
 
 .form label {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
+  color: #333;
 }
 
 .form input,
 .form textarea {
-  margin-top: 0.3rem;
-  padding: 0.4rem 0.6rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
   font-size: 1rem;
   width: 100%;
   box-sizing: border-box;
+  transition: border-color 0.2s ease;
+  margin-top: 5px;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: #7c4dff;
+  outline: none;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
 }
 
 .saveBtn {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  width: auto;
+  background: #1ea13a;
+  color: #fff;
+  padding: 0.9rem 1.5rem;
   border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 0.95rem;
-  background: #28a745;
-  color: white;
+  transition: background 0.2s ease;
+  font-family: "Poppins", "Sans-serif";
 }
 
 .saveBtn:hover {
-  background: #218838;
+  background: #1b6e2d;
 }
 
-/* List Pengumuman */
+/* List */
 .list {
   display: flex;
   flex-direction: column;
@@ -78,70 +94,122 @@
   margin-top: 1rem;
 }
 
-.card {
+.listInfo {
+  background-color: #dad0f4;
+  width: 100%;
+  height: 50px;
+  border-radius: 0.5rem;
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+}
+
+.listInfo p {
+  color: #7f7f7f;
+  font-size: 0.8rem;
+}
+
+/* Card */
+.announceCard {
+  display: flex;
+  flex-direction: column;
   background: white;
   padding: 1rem;
   border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: 0.2s;
+  overflow-wrap: break-word; /* teks panjang auto turun */
 }
 
-.card:hover {
+.announceCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.cardContent {
+.announceContent {
   flex: 1;
-  margin-right: 1rem;
-}
-
-.cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 0.5rem;
 }
 
-.cardHeader h3 {
+.announceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* biar tanggal bisa turun */
+  margin-bottom: 0.5rem;
+}
+
+.announceHeader h3 {
   font-size: 1.1rem;
   font-weight: 600;
   color: #7c4dff;
+
+  /* tambahan biar teks wrap */
+  word-wrap: break-word;   /* pecah kata panjang */
+  word-break: break-word;  /* kalau ada string tanpa spasi */
+  white-space: normal;     /* jangan paksa satu baris */
+  max-width: 100%;         /* jangan melebihi lebar parent */
+  overflow: hidden;        /* cegah meluber */
 }
 
-.cardHeader span {
+
+.announceHeader span {
   font-size: 0.85rem;
   color: #555;
 }
 
-.card p {
+.announceContent p {
   font-size: 0.9rem;
   color: #333;
   line-height: 1.4;
 }
 
-.actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  flex-shrink: 0;
+/* truncate isi */
+.truncatedText {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* potong 2 baris */
+  -webkit-box-orient: vertical;
 }
 
-.actions button {
-  padding: 0.3rem 0.6rem;
-  border-radius: 0.5rem;
+.fullText {
+  display: block;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.viewBtn {
+  background: #007bff;
+  color: white;
   border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
   cursor: pointer;
-  font-size: 0.85rem;
+}
+
+.viewBtn:hover {
+  background: #0056b3;
+}
+
+.date {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #666;
 }
 
 .editBtn {
   background: #ffc107;
   color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
 }
 
 .editBtn:hover {
@@ -151,6 +219,10 @@
 .deleteBtn {
   background: #dc3545;
   color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
 }
 
 .deleteBtn:hover {
@@ -159,16 +231,16 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .card {
+  .announceHeader {
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
   }
-  .cardContent {
-    margin-right: 0;
-    margin-bottom: 0.5rem;
+
+  .announceHeader span {
+    margin-top: 0.5rem;
   }
+
   .actions {
-    flex-direction: row;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 }

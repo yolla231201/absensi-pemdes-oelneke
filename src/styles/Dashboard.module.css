@@ -1,28 +1,32 @@
-/* src/pages/Dashboard/Dashboard.module.css */
 .dashboardWrapper {
   display: flex;
   min-height: 100vh;
   background: #faf9fb;
   flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem; /* padding wrapper lebih lega */
 }
 
 .dashboardMain {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  padding-bottom: 25px;
-  overflow-y: auto;
-  height: 100vh;
+  padding: 2.5rem; /* tambah sedikit */
   box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .dashboardTitle {
   font-size: 1rem;
-  color: #5b2fd7;
+  color: #7c4dff;
   text-align: left;
-  width: 100%;
   margin-bottom: 1rem;
+  font-weight: 600;
+  word-break: break-word;
+  white-space: normal;
+  max-width: 100%;
 }
 
 .dashboardCards {
@@ -35,16 +39,16 @@
 .card {
   flex: 1 1 0;
   background: white;
-  padding: 1rem;
+  padding: 1.2rem; /* lebih lega */
   border-radius: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .card h2 {
@@ -61,73 +65,115 @@
 
 .dashboardTable {
   background: white;
-  padding: 1rem;
+  padding: 1.2rem; /* padding lebih lega */
   border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   margin-bottom: 2rem;
-  overflow: visible;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dashboardTable h2 {
   font-size: 0.9rem;
   color: #7c4dff;
+  margin-bottom: 0.5rem;
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 0.75rem; /* padding horizontal lebih lega */
+  box-sizing: border-box;
 }
 
 .dashboardTable table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .dashboardTable th,
 .dashboardTable td {
   border: 1px solid #ededed;
-  padding: 0.8rem;
+  padding: 0.65rem; /* lebih lega */
   text-align: center;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.dashboardTable th:first-child,
+.dashboardTable td:first-child {
+  width: 50%;
+  text-align: left;
+}
+
+.dashboardTable th:nth-child(2),
+.dashboardTable td:nth-child(2),
+.dashboardTable th:nth-child(3),
+.dashboardTable td:nth-child(3),
+.dashboardTable th:nth-child(4),
+.dashboardTable td:nth-child(4) {
+  width: 16.66%;
 }
 
 .dashboardTable th {
   background: #7c4dff;
   color: white;
-  font-weight: 200;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.dashboardTable td {
+  font-size: 0.8rem;
 }
 
 .dashboardPengumuman h2 {
   font-size: 0.8rem;
   color: #7c4dff;
+  margin-bottom: 0.5rem;
 }
 
 .pengumumanCard {
   display: flex;
   flex-direction: column;
   background: white;
-  padding: 1rem;
+  padding: 1.2rem; /* lebih lega */
   border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   margin-bottom: 1rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .pengumumanInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   width: 100%;
 }
 
 .pengumumanInfo h3 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #7c4dff;
+  word-break: break-word;
+  white-space: normal;
+  flex: 1;
 }
 
 .pengumumanCard button {
   background: #7c4dff;
   color: white;
   border: none;
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 0.9rem; /* lebih lega */
   border-radius: 0.75rem;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   transition: background 0.2s;
+  font-family: "Poppins";
+  flex-shrink: 0;
 }
 
 .pengumumanCard button:hover {
@@ -136,25 +182,34 @@
 
 .pengumumanCard p {
   margin-top: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: #111;
+  word-break: break-word;
+  white-space: normal;
+  max-width: 100%;
 }
 
 @media (max-width: 768px) {
   .dashboardMain {
+    padding: 1.2rem;
     padding-bottom: 80px;
+  }
+  .dashboardCards {
+    flex-wrap: wrap;
   }
   .dashboardTable th,
   .dashboardTable td {
     font-size: 0.7rem;
+    padding: 0.5rem;
   }
-  .dashboardCards .card {
-    padding: 0.8rem;
+  .tableWrapper {
+    padding: 0 0.5rem;
   }
-  .dashboardCards .card h2 {
-    font-size: 0.6rem;
+  .pengumumanInfo {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  .dashboardCards .card p {
-    font-size: 0.8rem;
+  .pengumumanCard button {
+    align-self: flex-end;
   }
 }

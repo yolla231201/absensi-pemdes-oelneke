@@ -4,6 +4,7 @@ import { IoMdEye, IoIosEyeOff } from "react-icons/io";
 import Alert from "../components/Alert/Alert";
 import ProtectedRoute from "../components/ProtectedRoute";
 import styles from "../styles/TambahPengguna.module.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 const jabatanMap = {
   kepala_desa: "Kepala Desa",
@@ -28,10 +29,9 @@ const TambahPengguna = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [toastMessage, setToastMessage] = useState(null);
+  const [alert, setAlert] = useState(null);
   const [jabatanDisabled, setJabatanDisabled] = useState({});
-
-  const showToast = (msg) => setToastMessage(msg);
+  const [passwordMismatchError, setPasswordMismatchError] = useState(""); // khusus mismatch
 
   useEffect(() => {
     const checkJabatan = async () => {
@@ -54,19 +54,22 @@ const TambahPengguna = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setPasswordMismatchError(""); // reset tiap submit
+
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (!passwordRegex.test(password)) {
-      showToast(
-        "Password minimal 8 karakter dan terdiri dari huruf dan angka."
-      );
+      setAlert({
+        type: "error",
+        message: "Password minimal 8 karakter dan terdiri dari huruf dan angka.",
+      });
       return;
     }
     if (password !== konfirmasiPassword) {
-      showToast("Password dan konfirmasi tidak cocok!");
+      setPasswordMismatchError("Password dan konfirmasi tidak cocok!");
       return;
     }
     if (!jabatan) {
-      showToast("Silakan pilih jabatan!");
+      setAlert({ type: "error", message: "Silakan pilih jabatan!" });
       return;
     }
 
@@ -84,7 +87,10 @@ const TambahPengguna = () => {
         }),
       });
       const data = await res.json();
-      showToast(data.message || data.error || "Terjadi kesalahan server");
+      setAlert({
+        type: res.ok ? "success" : "error",
+        message: data.message || data.error || "Terjadi kesalahan server",
+      });
       if (res.ok) {
         setNama("");
         setEmail("");
@@ -93,17 +99,33 @@ const TambahPengguna = () => {
         setKonfirmasiPassword("");
       }
     } catch {
-      showToast("Terjadi kesalahan server");
+      setAlert({ type: "error", message: "Terjadi kesalahan server" });
     } finally {
       setLoading(false);
     }
   };
+
+  const handleClickInput = () => {
+  setPasswordMismatchError("");  // reset error mismatch
+  // opsional kalau mau reset alert global juga:
+  setAlert(null);
+};
 
   return (
     <ProtectedRoute allowedRoles={["kepala_desa"]}>
       <div className={styles.wrapper}>
         <main className={styles.main}>
           <h1 className={styles.title}>Tambah Pegawai</h1>
+
+          {alert && (
+            <Alert
+              type={alert.type}
+              message={alert.message}
+              duration={4000}
+              onClose={() => setAlert(null)}
+            />
+          )}
+
           <form className={styles.form} onSubmit={handleSubmit}>
             {["Nama Lengkap", "Email"].map((label, i) => (
               <div className={styles.inputGroup} key={i}>
@@ -116,16 +138,19 @@ const TambahPengguna = () => {
                       ? setEmail(e.target.value)
                       : setNama(e.target.value)
                   }
+                  onClick={handleClickInput} 
                   required
                 />
               </div>
             ))}
+
             <div className={styles.inputGroup}>
               <label>Jabatan</label>
               <select
                 value={jabatan}
                 onChange={(e) => setJabatan(e.target.value)}
                 required
+                onClick={handleClickInput} 
               >
                 <option value="">-- Pilih Jabatan --</option>
                 {Object.entries(jabatanMap).map(([key, label]) => (
@@ -135,6 +160,7 @@ const TambahPengguna = () => {
                 ))}
               </select>
             </div>
+
             {["Password", "Konfirmasi Password"].map((label, i) => (
               <div className={styles.inputGroup} key={i}>
                 <label>{label}</label>
@@ -155,6 +181,7 @@ const TambahPengguna = () => {
                         ? setPassword(e.target.value)
                         : setKonfirmasiPassword(e.target.value)
                     }
+                    onFocus={handleClickInput}
                     required
                     onPaste={
                       label === "Konfirmasi Password"
@@ -164,7 +191,9 @@ const TambahPengguna = () => {
                   />
                   <span
                     className={styles.togglePassword}
+                    
                     onClick={() =>
+                      
                       label === "Password"
                         ? setShowPassword(!showPassword)
                         : setShowConfirmPassword(!showConfirmPassword)
@@ -185,6 +214,22 @@ const TambahPengguna = () => {
                 </div>
               </div>
             ))}
+
+            {/* Error khusus password mismatch */}
+            <AnimatePresence>
+              {passwordMismatchError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className={styles.error}
+                >
+                  {passwordMismatchError}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <div className={styles.buttonWrapper}>
               <button
                 type="submit"
@@ -195,12 +240,6 @@ const TambahPengguna = () => {
               </button>
             </div>
           </form>
-          {toastMessage && (
-            <Alert
-              message={toastMessage}
-              onClose={() => setToastMessage(null)}
-            />
-          )}
         </main>
       </div>
     </ProtectedRoute>

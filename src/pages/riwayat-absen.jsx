@@ -39,9 +39,7 @@ const RiwayatAbsen = () => {
     return "Riwayat Absensi";
   };
 
-  const getReportTitleText = () => {
-    return getReportTitle();
-  };
+  const getReportTitleText = () => getReportTitle();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -127,10 +125,7 @@ const RiwayatAbsen = () => {
       riwayatData.map((item) => ({
         Nama: item.nama,
         Status: item.status,
-        Waktu:
-          new Date(item.waktu).toLocaleDateString("id-ID") +
-          " | " +
-          new Date(item.waktu).toLocaleTimeString("id-ID"),
+        Waktu: new Date(item.waktu).toLocaleDateString("id-ID") + " | " + new Date(item.waktu).toLocaleTimeString("id-ID"),
       }))
     );
     const workbook = XLSX.utils.book_new();
@@ -142,21 +137,18 @@ const RiwayatAbsen = () => {
     const doc = new jsPDF();
     doc.setFontSize(14);
     doc.text(getReportTitleText(), 14, 15);
-
     const tableRows = riwayatData.map((item) => [
       item.nama,
       item.status,
-      new Date(item.waktu).toLocaleDateString("id-ID") +
-        " | " +
-        new Date(item.waktu).toLocaleTimeString("id-ID"),
+      new Date(item.waktu).toLocaleDateString("id-ID") + " | " + new Date(item.waktu).toLocaleTimeString("id-ID"),
     ]);
-
     autoTable(doc, {
       head: [["Nama", "Status", "Waktu"]],
       body: tableRows,
       startY: 25,
+      styles: { fontSize: 8 },
+      headStyles: { fillColor: [124, 77, 255] },
     });
-
     doc.save(getReportTitleText() + ".pdf");
   };
 
@@ -164,21 +156,14 @@ const RiwayatAbsen = () => {
     <div className={styles.wrapper}>
       <main className={styles.main}>
         <h1 className={styles.title}>Riwayat Absensi</h1>
-
         {message && <div className={styles.alert}>{message}</div>}
 
         <div className={styles.filterButtons}>
           {role === "kepala_desa" && (
-            <button className={filter === "hari" ? styles.active : ""} onClick={() => setFilter("hari")}>
-              Hari Ini
-            </button>
+            <button className={filter === "hari" ? styles.active : ""} onClick={() => setFilter("hari")}>Hari Ini</button>
           )}
-          <button className={filter === "minggu" ? styles.active : ""} onClick={() => setFilter("minggu")}>
-            Minggu Ini
-          </button>
-          <button className={filter === "bulan" ? styles.active : ""} onClick={() => setFilter("bulan")}>
-            Bulan Ini
-          </button>
+          <button className={filter === "minggu" ? styles.active : ""} onClick={() => setFilter("minggu")}>Minggu Ini</button>
+          <button className={filter === "bulan" ? styles.active : ""} onClick={() => setFilter("bulan")}>Bulan Ini</button>
         </div>
 
         {role === "kepala_desa" && (
@@ -193,47 +178,37 @@ const RiwayatAbsen = () => {
           {loading ? (
             <p className={styles.loading}>Loading...</p>
           ) : riwayatData.length === 0 ? (
-            <div className={styles.emptyCard}>
-              <p>Data absensi belum ada.</p>
-            </div>
+            <div className={styles.emptyCard}><p>Data absensi belum ada.</p></div>
           ) : (
-            <>
-              <div className={styles.tableResponsive}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      <th>Nama</th>
-                      <th>Status</th>
-                      <th>Waktu</th>
+            <div className={styles.tableResponsive}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Status</th>
+                    <th>Waktu</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentData.map((item, idx) => (
+                    <tr key={idx}>
+                      <td>{item.nama}</td>
+                      <td>
+                        <span className={`${styles.status} ${styles[item.status?.toLowerCase()]}`}>{item.status}</span>
+                      </td>
+                      <td>{new Date(item.waktu).toLocaleDateString("id-ID") + " | " + new Date(item.waktu).toLocaleTimeString("id-ID")}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {currentData.map((item, idx) => (
-                      <tr key={idx}>
-                        <td>{item.nama}</td>
-                        <td>
-                          <span className={`${styles.status} ${styles[item.status?.toLowerCase()]}`}>
-                            {item.status}
-                          </span>
-                        </td>
-                        <td>
-                          {new Date(item.waktu).toLocaleDateString("id-ID") +
-                            " | " +
-                            new Date(item.waktu).toLocaleTimeString("id-ID")}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              <div className={styles.pagination}>
-                <button onClick={handlePrev} disabled={currentPage === 1}>&lt; Sebelumnya</button>
-                <span>{currentPage} / {totalPages || 1}</span>
-                <button onClick={handleNext} disabled={currentPage === totalPages}>Selanjutnya &gt;</button>
-              </div>
-            </>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
+
+          <div className={styles.pagination}>
+            <button onClick={handlePrev} disabled={currentPage === 1}>&lt; Sebelumnya</button>
+            <span>{currentPage} / {totalPages || 1}</span>
+            <button onClick={handleNext} disabled={currentPage === totalPages}>Selanjutnya &gt;</button>
+          </div>
         </div>
       </main>
     </div>

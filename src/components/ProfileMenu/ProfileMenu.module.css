@@ -2,7 +2,6 @@
   width: 100%;
 }
 
-/* Style desktop: profile menu di atas konten, navbar di samping konten */
 .profileMenu {
   display: flex;
   justify-content: space-between;
@@ -10,14 +9,11 @@
   gap: 1rem;
   padding: 1rem 1.5rem;
   z-index: 100;
-
-  /* Tambahan shadow & border-radius */
   background-color: #fff;
   border-radius: 0.75rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* shadow halus */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo + rotating text */
 .appLogoWrapper {
   display: flex;
   align-items: center;
@@ -57,7 +53,6 @@
   overflow: hidden;
 }
 
-/* Profile photo & dropdown */
 .profileWrapper {
   position: relative;
 }
@@ -80,22 +75,19 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   width: 240px;
+  max-width: 90vw; /* responsive di mobile */
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 100;
   animation: dropdownFade 0.2s ease;
+  word-break: break-word; /* agar nama panjang wrap */
+  overflow-wrap: anywhere; /* agar nama panjang tidak keluar */
 }
 
 @keyframes dropdownFade {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .dropdownPhoto {
@@ -109,11 +101,14 @@
 .userInfo {
   text-align: center;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .userName {
   font-weight: bold;
   font-size: 1.1rem;
+  white-space: normal; /* wrap nama panjang */
+  overflow-wrap: anywhere;
 }
 
 .userEmail,
@@ -121,6 +116,8 @@
   font-size: 0.8rem;
   color: #555;
   margin: 2px 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .dropdownMenu {
@@ -152,10 +149,9 @@
   color: #fff;
 }
 
-/* Logout button */
 .logoutButtonWrapper {
   display: flex;
-  justify-content: flex-end; /* dorong tombol ke kanan */
+  justify-content: flex-end;
   width: 100%;
 }
 
@@ -169,51 +165,56 @@
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s ease;
-  margin-left: auto; /* pastikan tombol nempel kanan */
+  margin-left: auto;
 }
 
 .logoutBtn:hover {
   background: #952e2e;
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   .profileMenu {
     flex-direction: row;
     justify-content: space-between;
     padding: 1rem;
-    border-radius: 0; /* di mobile, shadow bisa hilang supaya lebih seamless */
+    border-radius: 0;
     box-shadow: none;
   }
 
   .desaWrapper {
     font-size: 1.5rem;
   }
+
   .rotatingTextMain {
     font-size: 1.2rem;
     padding: 0.25rem 0.5rem;
   }
+
   .appLogo {
     width: 30px;
     height: 30px;
   }
+
   .profilePhoto,
   .dropdownPhoto {
     width: 40px;
     height: 40px;
   }
+
   .userName,
   .userEmail,
   .userRole {
     font-size: 0.8rem;
   }
+
   .dropdownItem {
     font-size: 0.9rem;
   }
+
   .logoutBtn {
-    width: 100%; /* di mobile tombol full width */
+    width: 100%;
     font-size: 0.8rem;
     padding: 0.8rem 1rem;
-    margin-left: 0; /* reset biar center */
+    margin-left: 0;
   }
 }
